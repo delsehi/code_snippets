@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import ejs from 'ejs'
 import path from 'path'
 import helmet from 'helmet'
+import session from 'express-session'
 dotenv.config()
 
 const app = express()
