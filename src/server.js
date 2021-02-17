@@ -1,15 +1,18 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { dirname, join} from 'path'
-import mongoose from 'mongoose'
+//import mongoose from 'mongoose'
 import ejs from 'ejs'
 import path from 'path'
-import helmet from 'helmet'
-import session from 'express-session'
+import { fileURLToPath } from 'url'
+//import helmet from 'helmet'
+//import session from 'express-session'
 dotenv.config()
 
 const app = express()
 const __dirname = path.resolve();
+
+
 
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'ejs')
@@ -17,7 +20,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-    res.render('index', {data: "No"})
+    res.render('index', {data: "No", snippets: ["ok", "no"]})
 })
 
 app.listen(process.env.PORT, () => {
