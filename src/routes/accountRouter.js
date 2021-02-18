@@ -5,5 +5,4 @@ import { accountController } from '../controllers/accountController.js'
 export const router = express.Router()
 
 
-const controller = new accountController()
-
+// accountController.createAccount('Delfi', 'Hi')

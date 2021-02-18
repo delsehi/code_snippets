@@ -6,6 +6,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import helmet from 'helmet'
 import mongoose from 'mongoose'
+import configDB from './configDB.js'
 import { router } from './routes/router.js'
 //import session from 'express-session'
 dotenv.config()
@@ -21,19 +22,12 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 
-mongoose.connect(process.env.DB_CONNECTION_STRING,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-    }, (err) => {
-        console.log('Connected to DB!')
-        if (err) {console.log(err);return}
-        const PORT = process.env.PORT
-        app.listen(PORT, () => {
-            console.log("app is running ")
-        })
-    })
+await configDB()
+
+const PORT = process.env.PORT
+            app.listen(PORT, () => {
+                console.log("app is running ")
+            })
 
 app.get('/', (req, res) => {
     res.render('index', { data: "No", snippets: ["ok", "no"] })
