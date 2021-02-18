@@ -5,14 +5,14 @@ import { accountController } from '../controllers/accountController.js'
 export const accountRouter = express.Router()
 
 accountRouter.post('/signup', (req, res, next) => {
-    console.log(req.body)
+
     accountController.createAccount(req.body.username, req.body.password)
-    res.send("Hello there")
+    res.send("You've created an account. ")
 
 })
 
 accountRouter.get('/signup', (req, res, next) => {
-    res.render('signup')
+    accountController.signup(req, res, next)
 })
 
 accountRouter.get('/', (req, res, next) => {
