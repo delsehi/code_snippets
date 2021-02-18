@@ -24,12 +24,9 @@ app.use(express.urlencoded({ extended: false }))
 
 await configDB()
 
+app.use('/', router)
+
 const PORT = process.env.PORT
             app.listen(PORT, () => {
                 console.log("app is running ")
             })
-
-app.get('/', (req, res) => {
-    res.render('index', { data: "No", snippets: ["ok", "no"] })
-})
-
