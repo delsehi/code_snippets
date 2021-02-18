@@ -27,6 +27,6 @@ await configDB()
 app.use('/', router)
 
 const PORT = process.env.PORT
-            app.listen(PORT, () => {
-                console.log("app is running ")
-            })
+app.listen(PORT, () => {
+    console.log("Application is up and running. Listening at port " + PORT)
+})

@@ -11,6 +11,10 @@ accountRouter.post('/signup', (req, res, next) => {
 
 })
 
+accountRouter.get('/signup', (req, res, next) => {
+    res.render('signup')
+})
+
 accountRouter.get('/', (req, res, next) => {
-    
+    res.send('Yes')
 })

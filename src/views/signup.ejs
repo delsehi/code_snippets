@@ -12,13 +12,13 @@
     <a href="./login">Login</a>
     <a href="./account">Signup</a>
 
-    <h2>Code snippets</h2>
-    <ul>
-        <% snippets.forEach(item => { %>
-            <li><%= item %></li>
-    <%    }) %>
-    </ul>
-
-    <p><%= data %></p>
+    <h2>Sign up!</h2>
+    <form action="/account/signup" method="post">
+        <label for="username"></label>
+        <input id="username" type="text" name="username">
+        <label for="password"></label>
+        <input type="password" name="password" id="password">
+        <input type="submit" value="Sign up">
+    </form>
 </body>
 </html>
