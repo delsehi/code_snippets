@@ -1,8 +1,7 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import { Account } from '../models/account.js'
+import Account from '../models/account.js'
 dotenv.config()
-
 
 export class accountController {
     static async createAccount(newUsername, newPassword) {
@@ -10,6 +9,8 @@ export class accountController {
             username: newUsername, 
             password: newPassword
         })
-        await newAccount.save()
+        await newAccount.save((err, ok) => {
+            console.log(ok, err)
+        })
     }
 }

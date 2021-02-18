@@ -35,15 +35,6 @@ mongoose.connect(process.env.DB_CONNECTION_STRING,
         })
     })
 
-const schema = mongoose.Schema({
-    name: String
-})
-const model = mongoose.model('Lister', schema)
-
-const love = new model({name: 'Delfi'})
-await love.save()
-
-
 app.get('/', (req, res) => {
     res.render('index', { data: "No", snippets: ["ok", "no"] })
 })

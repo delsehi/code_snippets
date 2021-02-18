@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 
-const accountSchema = new mongoose.Schema({
+const accountSchema = mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -12,5 +12,5 @@ const accountSchema = new mongoose.Schema({
     }
 })
 
-
-export const Account = mongoose.model('Account', accountSchema)
+const Account = mongoose.model('Account', accountSchema)
+export default Account
