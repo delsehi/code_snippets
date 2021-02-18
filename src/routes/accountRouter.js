@@ -5,4 +5,4 @@ import { accountController } from '../controllers/accountController.js'
 export const router = express.Router()
 
 
-accountController.createAccount('hello', 'there')
+//await accountController.createAccount('hello', 'there')

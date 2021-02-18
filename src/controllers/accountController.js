@@ -5,7 +5,11 @@ dotenv.config()
 
 
 export class accountController {
-    static async createAccount(username, password) {
-        console.log(username, password)
+    static async createAccount(newUsername, newPassword) {
+        const newAccount = new Account({
+            username: newUsername, 
+            password: newPassword
+        })
+        await newAccount.save()
     }
 }

@@ -1,10 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import { dirname, join} from 'path'
+import { dirname, join } from 'path'
 import ejs from 'ejs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import helmet from 'helmet'
+import mongoose from 'mongoose'
 import { router } from './routes/router.js'
 //import session from 'express-session'
 dotenv.config()
@@ -20,10 +21,30 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 
+mongoose.connect(process.env.DB_CONNECTION_STRING,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false
+    }, (err) => {
+        console.log('Connected to DB!')
+        if (err) {console.log(err);return}
+        const PORT = process.env.PORT
+        app.listen(PORT, () => {
+            console.log("app is running ")
+        })
+    })
+
+const schema = mongoose.Schema({
+    name: String
+})
+const model = mongoose.model('Lister', schema)
+
+const love = new model({name: 'Delfi'})
+await love.save()
+
+
 app.get('/', (req, res) => {
-    res.render('index', {data: "No", snippets: ["ok", "no"]})
+    res.render('index', { data: "No", snippets: ["ok", "no"] })
 })
 
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on port ${process.env.PORT}`)
-})
