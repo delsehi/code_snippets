@@ -16,7 +16,7 @@ const __dirname = path.resolve();
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(helmet())
-app.use(session({ cookie: { secure: true }, secret: process.env.SESSIONSECRET, resave: false, saveUninitialized: true, }))
+app.use(session({ cookie: { secure: false }, secret: process.env.SESSIONSECRET, resave: false, saveUninitialized: true, }))
 
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'ejs')

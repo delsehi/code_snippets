@@ -16,7 +16,7 @@ export class accountController {
             bcrypt.compare(password, hashFromDB).then((result) => {
                 if (result) {
                     req.session.regenerate(() => {
-                        req.session.userID = user.username
+                        req.session.userID = user._id
                         req.session.success = `Authenticated as ${user.username}`
                         console.log(req.session.userID)
                         res.render("index")
@@ -24,7 +24,7 @@ export class accountController {
                     })
                 } else {
                     console.log('Authentication failed')
-                    req.session.error = "Authentication failed."
+                 //   req.session.error = "Authentication failed."
                     res.redirect('/account/login')
                 }
             })
@@ -59,3 +59,7 @@ export class accountController {
     }
 }
 
+
+function authenticate() {
+    console.log('YEEES')
+}
