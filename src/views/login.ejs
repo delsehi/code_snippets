@@ -11,16 +11,16 @@
 
 <body>
     <%- include('header') %>
-        <a href="./login">Login</a>
-        <a href="./account">Signup</a>
+        <a href="./login">Log in</a>
+        <a href="./account">Sign up</a>
 
-        <h2>Sign up!</h2>
-        <form action="/account/signup" method="post">
+        <h2>Log in</h2>
+        <form action="/account/login" method="post">
             <label for="username"></label>
             <input id="username" type="text" name="username">
             <label for="password"></label>
             <input type="password" name="password" id="password">
-            <input type="submit" value="Sign up">
+            <input type="submit" value="Log in">
         </form>
 </body>
 
