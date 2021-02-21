@@ -10,6 +10,8 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     }
+}, {
+    timestamps: true
 })
 
 const Snippet = mongoose.model('Snippet', schema)

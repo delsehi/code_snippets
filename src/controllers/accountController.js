@@ -57,8 +57,3 @@ export class accountController {
         res.render('signup')
     }
 }
-
-
-function authenticate() {
-    console.log('YEEES')
-}
