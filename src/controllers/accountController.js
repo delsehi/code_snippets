@@ -18,7 +18,6 @@ export class accountController {
                     req.session.regenerate(() => {
                         req.session.userID = user._id
                         req.session.success = `Authenticated as ${user.username}`
-                        console.log(req.session.userID)
                         res.render("index")
 
                     })
