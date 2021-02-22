@@ -1,4 +1,5 @@
 import express from 'express'
+import { snippetController } from '../controllers/snippetController.js'
 import { accountRouter } from './accountRouter.js'
 import { router as snippetRouter} from './snippetRouter.js'
 
@@ -8,8 +9,8 @@ router.use('/account', accountRouter)
 
 router.use('/snippet', snippetRouter)
 
-router.get('/', (req, res) => {
-    res.render('index', { data: "No", snippets: ["yes", "no"] })
+router.get('/', async (req, res) => {
+    res.render('index', {snippets: await snippetController.getAllSnippets()})
 })
 
 

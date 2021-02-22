@@ -14,7 +14,12 @@
         <%- include('header') %>
             <h2>Code snippets</h2>
             <ul>
-
+                <% snippets.forEach(snippet => { %>
+                    <li>
+                        <h4> Snippet </h4>
+                        <code><%= snippet.code %></code>
+                    </li>
+              <%  }) %>
             </ul>
     </main>
 

@@ -8,9 +8,15 @@ export class snippetController {
             code: req.body.code
         })
         snippet.save()
+        res.redirect('/snippet/dashboard')
     }
     static createPage(req, res, next) {
         res.render('createSnippet')
     }
-}
+    static async getAllSnippets() {
+        let a = await Snippet.find({})
+        console.log(a)
+        return a
 
+    }
+}
