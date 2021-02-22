@@ -10,7 +10,7 @@ router.use('/account', accountRouter)
 router.use('/snippet', snippetRouter)
 
 router.get('/', async (req, res) => {
-    res.render('index', {snippets: await snippetController.getAllSnippets()})
+    res.render('index', { msg: "", snippets: await snippetController.getAllSnippets()})
 })
 
 

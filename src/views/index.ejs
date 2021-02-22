@@ -16,8 +16,8 @@
             <ul>
                 <% snippets.forEach(snippet => { %>
                     <li>
-                        <h4> Snippet </h4>
-                        <code><%= snippet.code %></code>
+                        <h4> <%= snippet.createdAt %> </h4>
+                        <pre><%= snippet.code %></pre>
                     </li>
               <%  }) %>
             </ul>

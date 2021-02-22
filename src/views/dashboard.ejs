@@ -14,7 +14,21 @@
         <%- include('header') %>
             <a href="/snippet/create">Create new snippet</a>
             <h2>Your snippets</h2>
-
+            <% if (snippets.length > 0) { %>
+                <ul>
+                    <% snippets.forEach(snippet=> { %>
+                        <li>
+                            <h4>
+                                <%= snippet.createdAt %>
+                            </h4>
+                            <a href="">Edit</a> <a href="/snippet/delete/<%= snippet._id %>">Delete</a>
+                            <pre><%= snippet.code %></pre>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } else { %>
+                    <p>No snippets yet!</p>
+                    <% } %>
 
     </main>
 

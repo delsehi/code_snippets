@@ -10,7 +10,6 @@ export class accountController {
         let password = req.body.password
         let hashFromDB
         Account.findOne({ username: username }).exec((err, user) => {
-            console.log(user)
             hashFromDB = user.password
 
             bcrypt.compare(password, hashFromDB).then((result) => {
@@ -23,13 +22,16 @@ export class accountController {
                     })
                 } else {
                     console.log('Authentication failed')
-                 //   req.session.error = "Authentication failed."
                     res.redirect('/account/login')
                 }
             })
 
         }
         )
+    }
+    static async logout(req, res, next) {
+        req.session.destroy()
+        res.redirect('/')
     }
 
     static async createAccount(req, res, next) {
@@ -38,8 +40,6 @@ export class accountController {
 
         bcrypt.genSalt(10, async (err, salt) => {
             bcrypt.hash(newPassword, salt, (err, hash) => {
-                console.log("Hash is: " + hash)
-
                 const newAccount = new Account({
                     username: newUsername,
                     password: hash
@@ -51,9 +51,9 @@ export class accountController {
             })
         })
 
-        res.send('Alright, signed up!')
+        res.render('login', {msg: "You have created an account. Now log in!", })
     }
     static async signup(req, res, next) {
-        res.render('signup')
+        res.render('signup', {msg: ""})
     }
 }

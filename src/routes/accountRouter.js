@@ -11,9 +11,6 @@ accountRouter.post('/signup', (req, res, next) => accountController.createAccoun
 accountRouter.get('/signup', (req, res, next) => {
     accountController.signup(req, res, next)
 })
+accountRouter.get('/logout', (req, res, next) => { accountController.logout(req, res, next)})
 
-accountRouter.get('/login', (req, res, next) => { res.render('login') })
-
-accountRouter.get('/', (req, res, next) => {
-    res.send('Yes')
-})
+accountRouter.get('/login', (req, res, next) => { res.render('login', {msg: ""}) })
