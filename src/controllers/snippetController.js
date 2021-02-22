@@ -34,9 +34,12 @@ export class snippetController {
             res.redirect('/snippet/dashboard')
         }
         else {
-            req.flash('notify', 'Hey, that is not your snippet!')
-            res.redirect('/snippet/dashboard')
-            return
+            const error = new Error()
+            error.status = 403
+            next(error)
+            // req.flash('notify', 'Hey, that is not your snippet!')
+            // res.redirect('/snippet/dashboard')
+            // return
         }
     }
     static async editSnippet(req, res, next) {
@@ -50,7 +53,9 @@ export class snippetController {
             res.redirect('/snippet/dashboard')
         }
         else {
-            res.send('Unauthorized')
+            const error = new Error()
+            error.status = 403
+            next(error)
         }
     }
 

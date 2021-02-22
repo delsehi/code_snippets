@@ -32,6 +32,9 @@ app.use((err, req, res, next) => {
         case 404:
             res.status(404).render('error', {msg: '404 Not Found Sorry!'})
             break;
+        case 403:
+           res.status(403).render('error', {msg: 'You do not own that resource.'})
+            break
         default:
             res.status(505).render('error', {msg: 'Internal server error.'})
             break;
