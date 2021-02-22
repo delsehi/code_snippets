@@ -10,10 +10,10 @@ router.use('/account', accountRouter)
 router.use('/snippet', snippetRouter)
 
 router.get('/', async (req, res) => {
-    res.render('index', { msg: "", snippets: await snippetController.getAllSnippets()})
+    res.render('index', { user: req.session.userID, snippets: await snippetController.getAllSnippets()})
 })
 
-
 router.use('*', (req, res, next) => {
-    res.send('ERROR')
+    const error = new Error('Not found')
+    next(error)
 })

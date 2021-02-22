@@ -1,11 +1,17 @@
 <h1>Code Snippets</h1>
 <h2>by Delfi</h2>
+<%- include('flash') %>
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
+        <% if (user) { %>
+<% console.log(user) %>
+<li><a href="/snippet/dashboard">Your snippets</a></li>
+<li><a href="/account/logout">Log out</a></li>
+        <% } else { %> 
         <li><a href="/account/login">Login</a></li>
         <li><a href="/account/signup">Sign up</a></li>
-        <li><a href="/account/logout">Log out</a></li>
+        <% } %> 
     </ul>
 </nav>
 

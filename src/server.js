@@ -1,11 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
-// import { dirname, join } from 'path'
-// import ejs from 'ejs'
+import flash from 'express-flash-messages'
 import path from 'path'
-// import { fileURLToPath } from 'url'
 import helmet from 'helmet'
-// import mongoose from 'mongoose'
 import configDB from './configDB.js'
 import { router } from './routes/router.js'
 import session from 'express-session'
@@ -17,7 +14,8 @@ const __dirname = path.resolve();
 app.set('trust proxy', 1) // trust first proxy
 app.use(helmet())
 app.use(session({ cookie: { secure: false }, secret: process.env.SESSIONSECRET, resave: false, saveUninitialized: true, }))
-
+// Inspired by:  https://github.com/manojap/node_examples/tree/master/flashMessage
+app.use(flash())
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -26,6 +24,19 @@ app.use(express.urlencoded({ extended: true }))
 await configDB()
 
 app.use('/', router)
+
+
+// Error handling...
+app.use((err, req, res, next) => {
+    switch (err.status) {
+        case 404:
+            res.status(404).render('error', {msg: '404 Not Found Sorry!'})
+            break;
+        default:
+            res.status(505).render('error', {msg: 'Internal server error.'})
+            break;
+    }
+})
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {

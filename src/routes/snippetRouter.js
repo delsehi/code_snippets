@@ -9,7 +9,7 @@ router.post('/create', restrictLoggedIn, (req, res, next) => {snippetController
 router.get('/:creator', async (req, res, next) => {})
 router.get('/delete/:snippetID', (req, res, next) => {snippetController.deleteSnippet(req, res, next)})
 router.post('/edit/:snippetID', (req, res, next) => {snippetController.editSnippet(req, res, next)})
-router.get('/edit/:snippetID', (req, res, next) => {res.render('editSnippet', {snippet: req.params.snippetID})})
+router.get('/edit/:snippetID', (req, res, next) => {res.render('editSnippet', {user: req.session.userID, snippet: req.params.snippetID})})
 
 function restrictLoggedIn(req, res, next) {
     if (req.session.userID) {

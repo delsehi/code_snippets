@@ -1,0 +1,10 @@
+<div class="flash">
+    <% const m=getMessages() %>
+   
+    <% if (m.notify) { %>
+     <% m.notify.forEach((element) => { %>
+     <%= element %>
+     <% }) %>
+    <% } %>
+
+     </div>

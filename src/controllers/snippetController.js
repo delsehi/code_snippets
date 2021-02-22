@@ -8,10 +8,11 @@ export class snippetController {
             code: req.body.code
         })
         snippet.save()
+        req.flash('notify', 'Snippet has been created!')
         res.redirect('/snippet/dashboard')
     }
     static createPage(req, res, next) {
-        res.render('createSnippet', { msg: "" })
+        res.render('createSnippet', { user: req.session.userID })
     }
     static async getAllSnippets() {
         return await Snippet.find({})
@@ -22,7 +23,7 @@ export class snippetController {
     static async renderDashboard(req, res, next) {
         const userID = req.session.userID
         const userSnippets = await this.getSnippetBy(userID)
-        res.render('dashboard', { msg: "", snippets: userSnippets })
+        res.render('dashboard', { user: userID, snippets: userSnippets })
     }
     static async deleteSnippet(req, res, next) {
         const snippetID = req.params.snippetID
@@ -33,7 +34,9 @@ export class snippetController {
             res.redirect('/snippet/dashboard')
         }
         else {
-            res.send('Unauthorized')
+            req.flash('notify', 'Hey, that is not your snippet!')
+            res.redirect('/snippet/dashboard')
+            return
         }
     }
     static async editSnippet(req, res, next) {
