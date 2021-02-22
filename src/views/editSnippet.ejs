@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Code Snippets by Delfi</title>
+</head>
+
+<body>
+    <main>
+        <%- include('header') %>
+            <h2>Create snippet</h2>
+            <form action="/snippet/edit" method="post">
+                <label for="code">Snippet</label>
+                <textarea name="code" id="code" cols="30" rows="10"></textarea>
+                <input type="submit" value="Edit!">
+            </form>
+    </main>
+
+</body>
+
+</html>
