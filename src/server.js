@@ -41,7 +41,7 @@ app.use((err, req, res, next) => {
            res.status(403).render('error', {msg: '403 You do not own that resource.'})
             break
         default:
-            res.status(505).render('error', {msg: '505 Internal server error.'})
+            res.status(500).render('error', {msg: '500 Internal server error.'})
             break;
     }
 })
