@@ -12,40 +12,15 @@ accountRouter.get('/signup', (req, res, next) => {
 })
 accountRouter.get('/logout', restrictLoggedIn, (req, res, next) => { accountController.logout(req, res, next) })
 
-accountRouter.get/**
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa * @param req
-aaaaaaaaaaaaaaaaa * @param res
-aaaaaaaaaaaaaaaaa * @param next
-aaaaaaaaaaaaaaaaa */
-('/login', (req, res, next) => { res.render('login', { user: req.session.userID }) })
+accountRouter.get('/login', (req, res, next) => { res.render('login', { user: req.session.userID }) })
 
+/**
+ * Middleware that restricts anonymous users from accessing content.
+ *
+ * @param {Request} req The request.
+ * @param {Response} res The response.
+ * @param {next} next Next middleware.
+ */
 function restrictLoggedIn (req, res, next) {
   if (req.session.userID) {
     next()

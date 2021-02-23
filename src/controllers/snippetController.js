@@ -1,4 +1,3 @@
-import { render } from 'ejs'
 import Snippet from '../models/snippet.js'
 
 /**
@@ -6,9 +5,11 @@ import Snippet from '../models/snippet.js'
  */
 export class snippetController {
   /**
-   * @param req
-   * @param res
-   * @param next
+   * A controller for managing snippets.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async createSnippet (req, res, next) {
     const snippet = new Snippet({
@@ -21,32 +22,41 @@ export class snippetController {
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Method for rendering page for creating snippet.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static createPage (req, res, next) {
     res.render('createSnippet', { user: req.session.userID })
   }
 
   /**
+   * Method for getting all snippets in the database.
    *
+   * @returns {Document<any>} the result.
    */
   static async getAllSnippets () {
     return await Snippet.find({})
   }
 
   /**
-   * @param userID
+   * Method for getting snippet by certain user.
+   *
+   * @param {number} userID The user id
+   * @returns {Document<any>} the result.
    */
   static async getSnippetBy (userID) {
     return await Snippet.find({ creatorID: userID })
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Method for rendering dashboard.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async renderDashboard (req, res, next) {
     const userID = req.session.userID
@@ -55,9 +65,11 @@ export class snippetController {
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Method for deleting a certain snippet.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async deleteSnippet (req, res, next) {
     const snippetID = req.params.snippetID
@@ -70,16 +82,15 @@ export class snippetController {
       const error = new Error()
       error.status = 403
       next(error)
-      // req.flash('notify', 'Hey, that is not your snippet!')
-      // res.redirect('/snippet/dashboard')
-      // return
     }
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Method for editing a certain snippet.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async editSnippet (req, res, next) {
     const snippetID = req.params.snippetID

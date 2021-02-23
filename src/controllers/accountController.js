@@ -1,17 +1,18 @@
-import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import Account from '../models/account.js'
 import bcrypt from 'bcrypt'
-dotenv.config/**
-ddddddddddddd *
-ddddddddddddd */
-()
-
+dotenv.config()
+/**
+ * Export controller for managing accounts.
+ *
+ */
 export class accountController {
   /**
-   * @param req
-   * @param res
-   * @param next
+   * A controller for the accounts.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async login (req, res, next) {
     const username = req.body.username
@@ -47,9 +48,11 @@ export class accountController {
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Static function for logging out.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async logout (req, res, next) {
     req.session.destroy()
@@ -57,9 +60,11 @@ export class accountController {
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Static method for creating an account.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async createAccount (req, res, next) {
     const newPassword = req.body.password
@@ -75,8 +80,8 @@ export class accountController {
       return
     }
 
-    bcrypt.genSalt(10, async (err, salt) => {
-      bcrypt.hash(newPassword, salt, (err, hash) => {
+    bcrypt.genSalt(10, async (_err, salt) => {
+      bcrypt.hash(newPassword, salt, (_err, hash) => {
         const newAccount = new Account({
           username: newUsername,
           password: hash
@@ -95,9 +100,11 @@ export class accountController {
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Static method for rendering the signup page.
+   *
+   * @param {Request} req The request.
+   * @param {Response} res The response.
+   * @param {next} next Next middleware.
    */
   static async signup (req, res, next) {
     res.render('signup', { user: null })
