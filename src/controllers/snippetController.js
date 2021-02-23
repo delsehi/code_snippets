@@ -9,7 +9,7 @@ export class snippetController {
         })
         snippet.save()
         req.flash('notify', 'Snippet has been created!')
-        res.redirect('/snippet/dashboard')
+        res.redirect(process.env.BASE_URL + '/snippet/dashboard')
     }
     static createPage(req, res, next) {
         res.render('createSnippet', { user: req.session.userID })
@@ -31,7 +31,7 @@ export class snippetController {
         const requesterID = req.session.userID
         if (requesterID === snippet.creatorID) {
             await Snippet.findByIdAndDelete(snippetID)
-            res.redirect('/snippet/dashboard')
+            res.redirect(process.env.BASE_URL + '/snippet/dashboard')
         }
         else {
             const error = new Error()
@@ -50,7 +50,7 @@ export class snippetController {
         if (requesterID === snippet.creatorID) {
             snippet.code = newCode
             snippet.save()
-            res.redirect('/snippet/dashboard')
+            res.redirect(process.env.BASE_URL + '/snippet/dashboard')
         }
         else {
             const error = new Error()

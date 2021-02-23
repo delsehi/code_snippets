@@ -11,24 +11,29 @@ export class accountController {
         let password = req.body.password
         if (!username || !password) {
             req.flash('notify', 'Authentication failed.')
-            res.redirect('/account/login')
+            res.redirect(process.env.BASE_URL + '/account/login')
             return
         }
 
         let hashFromDB
         Account.findOne({ username: username }).exec((err, user) => {
+            if (!user || err) {
+                req.flash('notify', 'Authentication failed.')
+                res.redirect(process.env.BASE_URL + '/account/login')
+                return
+            }
             hashFromDB = user.password
 
             bcrypt.compare(password, hashFromDB).then((result) => {
                 if (result) {
                     req.session.regenerate(() => {
                         req.session.userID = user._id
-                        res.redirect('/snippet/dashboard')
+                        res.redirect(process.env.BASE_URL + '/snippet/dashboard')
 
                     })
                 } else {
                     req.flash('notify', 'Authentication failed.')
-                    res.redirect('/account/login')
+                    res.redirect(process.env.BASE_URL + '/account/login')
                     return
                 }
             })
@@ -38,7 +43,7 @@ export class accountController {
     }
     static async logout(req, res, next) {
         req.session.destroy()
-        res.redirect('/')
+        res.redirect(process.env.BASE_URL + '/')
     }
 
     static async createAccount(req, res, next) {
@@ -46,12 +51,12 @@ export class accountController {
         let newUsername = req.body.username
         if (!newPassword || newPassword.length < 8) {
             req.flash('notify', 'Your password has to be at least 8 characters long.')
-            res.redirect('/account/signup')
+            res.redirect(process.env.BASE_URL + '/account/signup')
             return
         }
         if (!newUsername || newUsername.length < 4) {
             req.flash('notify', 'Your username has to be at least 4 characters long.')
-            res.redirect('/account/signup')
+            res.redirect(process.env.BASE_URL + '/account/signup')
             return
         }
 
@@ -64,19 +69,19 @@ export class accountController {
                 newAccount.save((err, ok) => {
                     if (err) {
                         req.flash('notify', 'Something went wrong. Maybe your username was already taken?')
-                        res.redirect('/account/signup')
+                        res.redirect(process.env.BASE_URL + '/account/signup')
                         return
                     } else if (ok) {
                         req.flash('notify', 'You have created an account. Now please log in!')
-                        res.redirect('/account/login')
+                        res.redirect(process.env.BASE_URL + '/account/login')
                     }
                 })
 
             })
         })
-        
+
     }
     static async signup(req, res, next) {
-        res.render('signup', {user: null})
+        res.render('signup', { user: null })
     }
 }

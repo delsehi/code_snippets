@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <base href="<%= baseURL %>">
+    <link rel="stylesheet" type="text/css" href="./style.css">
     <title>Code Snippets by Delfi</title>
 </head>
 
 <body>
     <main>
         <%- include('header') %>
-            <a href="/snippet/create">Create new snippet</a>
+            <a href="./snippet/create">Create new snippet</a>
             <h2>Your snippets</h2>
             <% if (snippets.length > 0) { %>
                 <ul>
@@ -21,7 +22,7 @@
                             <h4>
                                 <%= snippet.createdAt %>
                             </h4>
-                            <a href="/snippet/edit/<%= snippet._id %>">Edit</a> <a href="/snippet/delete/<%= snippet._id %>">Delete</a>
+                            <a href="./snippet/edit/<%= snippet._id %>">Edit</a> <a href="./snippet/delete/<%= snippet._id %>">Delete</a>
                             <pre><%= snippet.code %></pre>
                         </li>
                         <% }) %>
