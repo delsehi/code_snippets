@@ -1,7 +1,14 @@
+/**
+ * Router for things regarding code snippets.
+ *
+ * @author Delfi Šehidić <ds222qe@student.lnu.se>
+ * @version 1.0.0
+ */
 import express from 'express'
 import { snippetController } from '../controllers/snippetController.js'
 export const router = express.Router()
 
+// Map the routes to their controllers.
 router.get('/dashboard', restrictLoggedIn, (req, res, next) => { snippetController.renderDashboard(req, res, next) })
 router.get('/create', restrictLoggedIn, (req, res, next) => { snippetController.createPage(req, res, next) })
 router.post('/create', restrictLoggedIn, (req, res, next) => { snippetController.createSnippet(req, res, next) })

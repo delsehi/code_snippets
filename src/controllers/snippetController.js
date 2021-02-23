@@ -1,11 +1,11 @@
 import Snippet from '../models/snippet.js'
 
 /**
- *
+ * A controller for managing snippets.
  */
 export class snippetController {
   /**
-   * A controller for managing snippets.
+   * Method for creating a snippet.
    *
    * @param {Request} req The request.
    * @param {Response} res The response.

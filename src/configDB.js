@@ -1,3 +1,9 @@
+/**
+ * A simple configuration file that sets up a connection to the database.
+ *
+ * @author Delfi Šehidić <ds222qe@student.lnu.se>
+ * @version 1.0.0
+ */
 import mongoose from 'mongoose'
 
 /**
