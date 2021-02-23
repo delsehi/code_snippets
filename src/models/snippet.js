@@ -1,17 +1,16 @@
 import mongoose from 'mongoose'
 
-
 const schema = mongoose.Schema({
-    creatorID: {
-        type: String,
-        required: true,
-    },
-    code: {
-        type: String,
-        required: true
-    }
+  creatorID: {
+    type: String,
+    required: true
+  },
+  code: {
+    type: String,
+    required: true
+  }
 }, {
-    timestamps: true
+  timestamps: true
 })
 
 const Snippet = mongoose.model('Snippet', schema)
